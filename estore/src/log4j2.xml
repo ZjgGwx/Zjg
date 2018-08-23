@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+  	<!-- 
+  		<Console>声明  控制台输出源
+  		 name ：给当前输出源起别名
+  		 target:
+  		 	SYSTEM_ERR: 控制台红色字体
+  		 	SYSTEM_OUT: 控制台黑色字体
+  	 -->
+    <Console name="ddd" target="SYSTEM_ERR">
+    	<!--  日志的输出的布局（格式） -->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </Console>
+    
+    <!--  	文件输出源的配置    -->
+    <File name="MyFile" fileName="e:/b.log">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+    </File>
+    	
+    <!--
+    	多文件的输出源
+    	fileName：文件保存的位置
+    	filePattern：文件压缩的格式和保存路径（一旦文件达到翻转条件后）
+    	Policies： 翻转文件的触发政策
+    -->
+   	<RollingFile name="RollingFile" fileName="e:/bb.log"
+                 filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+      </PatternLayout>
+        
+      
+      
+      <Policies>
+        <TimeBasedTriggeringPolicy  />
+        <SizeBasedTriggeringPolicy size="20 kB"/>
+      </Policies>
+    </RollingFile>
+    
+    
+  </Appenders>
+  <Loggers>
+  	<!-- 
+  		level="error"  配置日志的输出级别的。
+  	 -->
+    <Root level="trace">
+      <AppenderRef ref="ddd"/>
+    <!--   <AppenderRef ref="MyFile"/> -->
+    </Root>
+  </Loggers>
+</Configuration>

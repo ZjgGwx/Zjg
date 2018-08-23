@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+			<!--
+      	定义一个div，用于生成二维码      
+      -->
+			<div id="qrcode"></div>
+	</body>
+	<script src="js/qrcode.js"></script>
+	<script>
+		var qrcodeDiv = document.getElementById("qrcode");
+		//第一个参数：二维码图片存放的标签对象        第二个参数:就是扫描二维码，访问的地址。
+		new QRCode(qrcodeDiv,"http://www.baidu.com");
+	</script>
+</html>
